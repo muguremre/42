@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 20:31:06 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 20:36:47 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+char
+	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int	i;
 
-	if (!dst)
-		return (NULL);
 	i = 0;
-	while (i < n)
-	{
-		*(char)*(dst + i) = *(char *)(src + i);
+	while (s[i])
 		i++;
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i--;
 	}
-	return (dst);
+	return (NULL);
 }

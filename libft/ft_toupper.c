@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 20:08:22 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 20:08:50 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+int
+	ft_toupper(int c)
 {
-	size_t	i;
-
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		*(char)*(dst + i) = *(char *)(src + i);
-		i++;
-	}
-	return (dst);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

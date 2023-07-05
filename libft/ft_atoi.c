@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 20:50:26 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 20:50:37 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+int
+	ft_atoi(const char *str)
 {
-	size_t	i;
+	int	i;
+	int	is_neg;
+	int	res;
 
-	if (!dst)
-		return (NULL);
+	if (!str)
+		return (0);
 	i = 0;
-	while (i < n)
-	{
-		*(char)*(dst + i) = *(char *)(src + i);
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
+			str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
-	}
-	return (dst);
+	is_neg = (str[i] == '-') ? -1 : 1;
+	if (is_neg == -1 || str[i] == '+')
+		i++;
+	res = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+		res = (res * 10) + (str[i++] - '0');
+	return (res * is_neg);
 }

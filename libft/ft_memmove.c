@@ -6,7 +6,7 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:35:47 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 19:42:26 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/05 20:34:21 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -32,7 +32,7 @@ void
 		i = 0;
 		while (i < (int)len)
 		{
-			*(char)*(dst + i) = *(char)*(src + i);
+			*(char)*(dst + i) = *(char *)(src + i);
 			i++;
 		}
 	}

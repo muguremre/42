@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 20:55:07 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 20:55:17 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+char
+	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
-	if (!dst)
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (i < n)
+	j = 0;
+	while (s[i])
 	{
-		*(char)*(dst + i) = *(char *)(src + i);
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	return (dst);
+	str[j] = 0;
+	return (str);
 }

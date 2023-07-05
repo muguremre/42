@@ -6,7 +6,7 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:33:06 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 19:41:53 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/05 20:33:17 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -21,7 +21,7 @@ void
 	i = 0;
 	while (i < len)
 	{
-		*(unsigned char)*(b + i) = (unsigned char)c;
+		*(unsigned char *)(b + i) = (unsigned char)c;
 		i++;
 	}
 	return (b);

@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 19:50:20 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 19:50:42 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t
+	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	j;
+	size_t	dest_length;
+	size_t	src_length;
 
-	if (!dst)
-		return (NULL);
+	src_length = ft_strlen(src);
+	dest_length = ft_strlen(dst);
+	j = dest_length;
 	i = 0;
-	while (i < n)
+	if (dest_length < size - 1 && size > 0)
 	{
-		*(char)*(dst + i) = *(char *)(src + i);
-		i++;
+		while (src[i] && dest_length + i < size - 1)
+		{
+			dst[j] = src[i];
+			j++;
+			i++;
+		}
+		dst[j] = 0;
 	}
-	return (dst);
+	if (dest_length >= size)
+		dest_length = size;
+	return (dest_length + src_length);
 }

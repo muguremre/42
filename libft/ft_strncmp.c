@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Created: 2023/07/05 20:32:18 by memre             #+#    #+#             */
+/*   Updated: 2023/07/05 20:32:52 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+static int
+	cmp_char(char c1, char c2)
 {
-	size_t	i;
+	if ((unsigned char)c1 != (unsigned char)c2)
+		return ((unsigned char)c1 - (unsigned char)c2);
+	return (0);
+}
 
-	if (!dst)
-		return (NULL);
+int
+	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+
 	i = 0;
-	while (i < n)
+	while (s1[i] && s2[i] && i < n)
 	{
-		*(char)*(dst + i) = *(char *)(src + i);
+		if (cmp_char(s1[i], s2[i]))
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (dst);
+	if (i < n)
+		return (cmp_char(s1[i], s2[i]));
+	return (0);
 }
