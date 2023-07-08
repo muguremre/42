@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int
-	ft_isprint(int c)
+int	ft_isprint(int character)
 {
-	return (c >= 32 && c <= 126);
+	if (character >= 32 && character < 127)
+		return (1);
+	return (0);
 }

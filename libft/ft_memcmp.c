@@ -6,22 +6,24 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:38:09 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:38:41 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 03:12:25 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int
-	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *pointer1, const void *pointer2, size_t size)
 {
-	size_t			i;
+	const unsigned char	*ptr1;
+	const unsigned char	*ptr2;
 
-	i = 0;
-	while (i < n)
+	ptr1 = (const unsigned char *)pointer1;
+	ptr2 = (const unsigned char *)pointer2;
+	while (size--)
 	{
-		if (*(unsigned char *)(s1 + i) != *(unsigned char *)(s2 + i))
-			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
-		i++;
+		if (*ptr1 != *ptr2)
+			return (*ptr1 - *ptr2);
+		ptr1++;
+		ptr2++;
 	}
 	return (0);
 }

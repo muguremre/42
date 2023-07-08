@@ -6,18 +6,17 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:59:03 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:59:34 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 03:19:59 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int
-	ft_char_in_set(char c, char const *set)
+static int	is_white_space(char c, char const *set)
 {
 	size_t	i;
 
 	i = 0;
-	while (set[i])
+	while (i < ft_strlen(set))
 	{
 		if (set[i] == c)
 			return (1);
@@ -26,26 +25,27 @@ static int
 	return (0);
 }
 
-char
-	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	size_t	i;
-	size_t	start;
-	size_t	end;
+	int		i;
+	int		y;
+	int		x;
+	int		max;
+	char	*res;
 
-	start = 0;
-	while (s1[start] && ft_char_in_set(s1[start], set))
-		start++;
-	end = ft_strlen(s1);
-	while (end > start && ft_char_in_set(s1[end - 1], set))
-		end--;
-	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (start < end)
-		str[i++] = s1[start++];
-	str[i] = 0;
-	return (str);
+	y = 0;
+	x = 0;
+	res = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	max = ft_strlen(s1);
+	while (is_white_space(s1[i], set) == 1)
+		i++;
+	while (is_white_space(s1[max - 1], set) == 1)
+		max--;
+	while (i < max)
+		res[x++] = s1[i++];
+	res[x] = '\0';
+	return (res);
 }

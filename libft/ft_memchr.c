@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *memoryBlock, int searchedChar, size_t size)
 {
-	size_t	i;
+	unsigned char	*strtosrc;
+	size_t			i;
 
-	if (!s)
-		return (NULL);
+	strtosrc = (unsigned char *)memoryBlock;
 	i = 0;
-	while (i < n)
+	while (i < size)
 	{
-		if (*(unsigned char *)(s + i) == (unsigned char)c)
-			return ((void *)(s + i));
+		if (*strtosrc == (unsigned char)searchedChar)
+			return (strtosrc);
+		strtosrc++;
 		i++;
 	}
 	return (NULL);

@@ -6,15 +6,14 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:08:22 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:08:50 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 03:21:02 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int
-	ft_toupper(int c)
+int	ft_toupper(int charact)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	if (charact >= 'a' && charact <= 'z')
+		charact -= 32;
+	return (charact);
 }

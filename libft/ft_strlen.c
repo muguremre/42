@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t
-	ft_strlen(const char *s)
+size_t	ft_strlen(const char *theString)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (theString[i])
 		i++;
 	return (i);
 }

@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 20:32:18 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:32:52 by memre            ###   ########.tr       */
+/*   Created: 2023/07/08 03:41:10 by memre             #+#    #+#             */
+/*   Updated: 2023/07/08 03:41:13 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *first, const char *second, size_t length)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < length)
+	if (alst && new)
 	{
-		if (((unsigned char)first[i] != (unsigned char)second[i]
-				|| first[i] == 0) || second[i] == 0)
-			return ((unsigned char)first[i] - (unsigned char)second[i]);
-		i++;
+		new->next = *alst;
+		*alst = new;
 	}
-	return (0);
 }

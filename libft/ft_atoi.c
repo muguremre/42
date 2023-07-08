@@ -6,29 +6,33 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:50:26 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:50:37 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 02:40:44 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int
-	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
-	int	is_neg;
 	int	res;
+	int	signe;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
-			str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
-		i++;
-	is_neg = (str[i] == '-') ? -1 : 1;
-	if (is_neg == -1 || str[i] == '+')
-		i++;
+	signe = 1;
 	res = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
+		i++;
+	if (str[i] == '-')
+	{
+		signe *= -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
-		res = (res * 10) + (str[i++] - '0');
-	return (res * is_neg);
+	{
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	return (res * signe);
 }

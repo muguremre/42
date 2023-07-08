@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 20:32:18 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:32:52 by memre            ###   ########.tr       */
+/*   Created: 2023/07/08 03:42:25 by memre             #+#    #+#             */
+/*   Updated: 2023/07/08 03:42:41 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *first, const char *second, size_t length)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int		len;
+	t_list	*tmp;
 
-	i = 0;
-	while (i < length)
+	len = 0;
+	tmp = lst;
+	if (tmp == NULL)
+		return (0);
+	while (tmp->next != 0)
 	{
-		if (((unsigned char)first[i] != (unsigned char)second[i]
-				|| first[i] == 0) || second[i] == 0)
-			return ((unsigned char)first[i] - (unsigned char)second[i]);
-		i++;
+		tmp = tmp->next;
+		len++;
 	}
-	return (0);
+	if (tmp->next == 0)
+		len++;
+	return (len);
 }

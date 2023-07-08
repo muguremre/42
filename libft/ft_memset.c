@@ -11,18 +11,17 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *ptr, int value, size_t count)
 {
-	size_t			i;
+	char	*strptr;
+	size_t	i;
 
-	if (!b)
-		return (NULL);
+	strptr = (char *)ptr;
 	i = 0;
-	while (i < len)
+	while (i < count)
 	{
-		*(unsigned char *)(b + i) = (unsigned char)c;
+		strptr[i] = value;
 		i++;
 	}
-	return (b);
+	return (ptr);
 }

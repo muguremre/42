@@ -6,55 +6,60 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:04:12 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 21:05:21 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 03:10:56 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static int
-	ft_abs(int nbr)
+static char	*ft_array(char *x, unsigned int number, long int len)
 {
-	return ((nbr < 0) ? - nbr : nbr);
-}
-
-static void
-	ft_strrev(char *str)
-{
-	size_t	length;
-	size_t	i;
-	char	tmp;
-
-	length = ft_strlen(str);
-	i = 0;
-	while (i < length / 2)
+	while (number > 0)
 	{
-		tmp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = tmp;
-		i++;
+		x[len--] = 48 + (number % 10);
+		number = number / 10;
 	}
+	return (x);
 }
 
-char
-	*ft_itoa(int n)
+static long int	ft_len(int n)
 {
-	char	*str;
-	int		is_neg;
-	size_t	length;
+	int					len;
 
-	is_neg = (n < 0);
-	if (!(str = ft_calloc(11 + is_neg, sizeof(*str))))
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
+	len = 0;
+	if (n <= 0)
+		len = 1;
 	while (n != 0)
 	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
+		len++;
+		n = n / 10;
 	}
-	if (is_neg)
-		str[length] = '-';
-	ft_strrev(str);
-	return (str);
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	char				*x;
+	long int			len;
+	unsigned int		number;
+	int					sign;
+
+	sign = 1;
+	len = ft_len(n);
+	x = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(x))
+		return (NULL);
+	x[len--] = '\0';
+	if (n == 0)
+		x[0] = '0';
+	if (n < 0)
+	{
+		sign *= -1;
+		number = n * -1;
+		x[0] = '-';
+	}
+	else
+		number = n;
+	x = ft_array(x, number, len);
+	return (x);
 }

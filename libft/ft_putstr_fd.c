@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 20:32:18 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:32:52 by memre            ###   ########.tr       */
+/*   Created: 2023/07/08 01:27:54 by memre             #+#    #+#             */
+/*   Updated: 2023/07/08 03:14:57 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *first, const char *second, size_t length)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i < length)
+	while (s[i])
 	{
-		if (((unsigned char)first[i] != (unsigned char)second[i]
-				|| first[i] == 0) || second[i] == 0)
-			return ((unsigned char)first[i] - (unsigned char)second[i]);
+		ft_putchar_fd (s[i], fd);
 		i++;
 	}
-	return (0);
 }

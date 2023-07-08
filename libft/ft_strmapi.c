@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 20:32:18 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:32:52 by memre            ###   ########.tr       */
+/*   Created: 2023/07/08 00:37:09 by memre             #+#    #+#             */
+/*   Updated: 2023/07/08 03:16:51 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *first, const char *second, size_t length)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	int		i;
+	char	*res;
 
 	i = 0;
-	while (i < length)
+	res = malloc(ft_strlen(s) * sizeof(char) + 1);
+	if (!res)
+		return (NULL);
+	while (s[i] != 0)
 	{
-		if (((unsigned char)first[i] != (unsigned char)second[i]
-				|| first[i] == 0) || second[i] == 0)
-			return ((unsigned char)first[i] - (unsigned char)second[i]);
+		res[i] = (*f)(i, s[i]);
 		i++;
 	}
-	return (0);
+	res[i] = 0;
+	return (res);
 }

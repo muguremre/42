@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 20:55:51 by memre             #+#    #+#             */
-/*   Updated: 2023/07/08 03:16:28 by memre            ###   ########.tr       */
+/*   Created: 2023/07/08 03:55:17 by memre             #+#    #+#             */
+/*   Updated: 2023/07/08 03:55:32 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		sizetotal;
-	char	*res;
-	int		i;
-	int		j;
+	t_list	*res;
+	t_list	*resfct;
 
-	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s1 || !s2)
+	(void)del;
+	if (!lst || !f)
 		return (NULL);
-	while (s1[i] != 0)
+	resfct = ft_lstnew(f(lst->content));
+	if (!(resfct))
+		return (NULL);
+	res = resfct;
+	lst = lst->next;
+	while (lst)
 	{
-		res[i] = s1[i];
-		i++;
+		resfct = ft_lstnew(f(lst->content));
+		if (!(resfct))
+		{
+			ft_lstclear(&resfct, del);
+			break ;
+		}
+		lst = lst->next;
+		ft_lstadd_back(&res, resfct);
 	}
-	j = 0;
-	while (s2[j] != 0)
-	{
-		res[i] = s2[j];
-		i++;
-		j++;
-	}
-	res[sizetotal] = 0;
 	return (res);
 }

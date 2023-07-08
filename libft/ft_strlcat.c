@@ -9,32 +9,31 @@
 /*   Updated: 2023/07/05 19:50:42 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 #include "libft.h"
 
-size_t
-	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
 	size_t	j;
-	size_t	dest_length;
-	size_t	src_length;
+	size_t	lensrc;
+	size_t	i;
+	int		totallen;
+	size_t	lendst;
 
-	src_length = ft_strlen(src);
-	dest_length = ft_strlen(dst);
-	j = dest_length;
+	j = 0;
 	i = 0;
-	if (dest_length < size - 1 && size > 0)
+	lendst = ft_strlen(dst);
+	lensrc = ft_strlen(src);
+	if (size > lendst)
+		totallen = lendst + lensrc;
+	else
+		totallen = lensrc + size;
+	j = lendst;
+	while (src[i] && j + 1 < size)
 	{
-		while (src[i] && dest_length + i < size - 1)
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
-		dst[j] = 0;
+		dst[j] = src[i];
+		j++;
+		i++;
 	}
-	if (dest_length >= size)
-		dest_length = size;
-	return (dest_length + src_length);
+	dst[j] = 0;
+	return (totallen);
 }

@@ -6,23 +6,26 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:44:54 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:01 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/08 03:12:54 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
+	char	*destcpy;
+	char	*srccpy;
 	size_t	i;
 
-	if (!dst)
+	destcpy = (char *)dest;
+	srccpy = (char *)src;
+	if (!dest && !src)
 		return (NULL);
 	i = 0;
 	while (i < n)
 	{
-		*(char)*(dst + i) = *(char *)(src + i);
+		destcpy[i] = srccpy[i];
 		i++;
 	}
-	return (dst);
+	return (destcpy);
 }
