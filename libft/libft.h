@@ -21,12 +21,6 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef struct s_split_next
-{
-	size_t	tart;
-	size_t	length;
-}				t_split_next;
-
 int				ft_atoi(const char *str);
 
 void			ft_bzero(void *s, size_t n);
@@ -70,6 +64,8 @@ char			**ft_split(char const *s, char c);
 char			*ft_strchr(const char *s, int c);
 
 char			*ft_strdup(const char *s1);
+
+void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 char			*ft_strjoin(char const *s1, char const *s2);
 

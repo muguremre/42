@@ -6,27 +6,32 @@
 /*   By: memre <42istanbul.com.tr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:42:22 by memre             #+#    #+#             */
-/*   Updated: 2023/07/05 20:45:33 by memre            ###   ########.tr       */
+/*   Updated: 2023/07/09 12:10:34 by memre            ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strnstr(const char	*big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	if (len == 0 || ft_strncmp(little, "", 1) == 0)
-		return ((char *)big);
-	while (i < len)
+	j = 0;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	while (haystack[i] != '\0' && i < n)
 	{
-		j = 0;
-		while (big[i + j] == little[j] && i + j < len)
+		if (haystack[i] == needle[j])
 		{
-			if (little[j + 1] == 0)
-				return ((char *)big + i);
-			j++;
+			while (haystack[i + j] == needle[j] && i + j < n)
+			{
+				if (needle[j + 1] == '\0')
+					return ((char *)haystack + i);
+				j++;
+			}
+			j = 0;
 		}
 		i++;
 	}
