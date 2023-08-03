@@ -13,12 +13,11 @@ OBJS = ${SRCS:.c=.o}
 
 OBJSBONUS = ${BONUS:.c=.o}
 
-CC		= gcc
+
 RM		= rm -f
 
-CFLAGS = -Wall -Wextra -Werror
 
-.c.o:
+all: $(NAME)
 		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
 $(NAME): ${OBJS}
@@ -27,7 +26,6 @@ $(NAME): ${OBJS}
 bonus:	${OBJS} ${OBJSBONUS}
 		ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
 
-all:	${NAME}
 
 clean:
 		${RM} ${OBJS} ${OBJSBONUS}
